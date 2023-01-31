@@ -1,0 +1,157 @@
+
+
+
+{% load static %}
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achiever Institute</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.min.css" integrity="sha512-6Z0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.min.css" integrity="sha512-6Z0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <style>
+        .search-box{
+            width: 400px;
+            position: relative;
+            display: inline-block;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            margin-left: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .search-btn {
+            color: #fff;
+            float: right;
+            width: 90px;
+            height: 45px;
+            border-radius: 10px;
+            background: #ff523b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding : 20px;
+            margin-left: 7%;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .heading{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 30px;
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .verified_heading{
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 30px;
+            position: relative;
+            margin-left: 7%;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+
+    </style>
+
+    <main class="home">
+
+        <div class="max-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="heading">
+                        Certificate Verification
+                    </h1>
+                    <div class="">
+                        <div style="display: flex;flex-direction: column;">
+                            {% csrf_token %}
+                            <input id="enrollment_id" type="text" name="enrollment_id" placeholder="Search by Enrollment Id" class="search-box">
+                            <button type="submit" class="search-btn">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="verified_heading">
+                    
+                </h1>
+            </div>
+        </div>
+
+        
+    </main>
+
+    <script>
+
+        const url = "/VerifyCertificate/";
+        
+        document.querySelector('.search-btn').addEventListener('click', function(){
+            var enrollment_id = document.querySelector('#enrollment_id').value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+
+            xhr.onload = function(){
+                if(this.status == 200){
+                    const response = JSON.parse(this.responseText);
+                    
+                    const verified = response.verified;
+
+                    console.log(response);
+
+                    document.querySelector('.verified_heading').innerHTML = "";
+
+                    if (verified === true) {
+                        document.querySelector('.verified_heading').innerHTML = "Certificate Verified";
+                    } else if (verified === null){
+                        document.querySelector('.verified_heading').innerHTML = "Certificate Not Found";
+                    } else if (verified === false)  {
+                        document.querySelector('.verified_heading').innerHTML = "Certificate Not Verified";
+                    };
+
+                };
+            };
+
+            xhr.send(JSON.stringify({
+                'enrollment_id': enrollment_id
+            }));
+
+        });
+
+        
+        
+
+    </script>
+
+
+    {% include 'footer.html' %}
+
+    <script src='{% static "script.js" %}'></script>
+</body>
+</html>
