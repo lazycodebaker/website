@@ -2,7 +2,7 @@
 
 
 {% load static %}
-    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.min.css" integrity="sha512-6Z0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.4/tailwind.min.css" integrity="sha512-6Z0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4qZ0q3q0J4Z2qZ7K4" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
@@ -96,43 +96,49 @@
                     </div>
                 </div>
                 <h1 class="verified_heading">
-                    
+
                 </h1>
+
+                <img src="" alt="" style="width: 300px; margin-left: 7%; margin-top: 10px;" class="verified_image">
             </div>
         </div>
 
-        
+
     </main>
 
     <script>
 
         const url = "/VerifyCertificate/";
-        
+
         document.querySelector('.search-btn').addEventListener('click', function(){
             var enrollment_id = document.querySelector('#enrollment_id').value;
 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
-            
+
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
 
             xhr.onload = function(){
                 if(this.status == 200){
                     const response = JSON.parse(this.responseText);
-                    
-                    const verified = response.verified;
 
                     console.log(response);
 
+                    const verified = response.verified;
+
                     document.querySelector('.verified_heading').innerHTML = "";
+                    document.querySelector('.verified_image').src = "";
 
                     if (verified === true) {
                         document.querySelector('.verified_heading').innerHTML = "Certificate Verified";
+                        document.querySelector('.verified_image').src = response.certificate;
                     } else if (verified === null){
                         document.querySelector('.verified_heading').innerHTML = "Certificate Not Found";
+                        document.querySelector('.verified_image').src = "";
                     } else if (verified === false)  {
                         document.querySelector('.verified_heading').innerHTML = "Certificate Not Verified";
+                        document.querySelector('.verified_image').src = "";
                     };
 
                 };
@@ -143,9 +149,6 @@
             }));
 
         });
-
-        
-        
 
     </script>
 
