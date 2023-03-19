@@ -203,7 +203,7 @@ section .title::after{
     display: flex;
     background: url("images/aboutb.jpg") no-repeat center;
     height: 100vh;
-    color: #fff;
+    color: rgb(247, 246, 246);
     min-height: 500px;
     background-size: cover;
     background-attachment: fixed;
