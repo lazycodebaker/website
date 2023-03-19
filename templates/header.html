@@ -2,17 +2,17 @@
 
 
 {% load static %}
-    
+
   <link rel="stylesheet" href="{% static 'style.css' %}">
     <div class="scroll-up-btn">
         <i class="fas fa-angle-up"></i>
     </div>
-            
+
     <nav class="navbar">
         <div class="max-width">
             <div class="logo"><a href="#">Achiever<span> Institute</span></a></div>
             <ul class="menu">
-                <li><a href="#home" class="menu-btn">Home</a></li>
+                <li><a href="/" class="menu-btn">Home</a></li>
                 <li><a href="#about" class="menu-btn">About</a></li>
                 <li><a href="#services" class="menu-btn">Services</a></li>
                 <li><a href="#skills" class="menu-btn">Courses</a></li>
@@ -21,6 +21,23 @@
                 <li>
                     <a href="{% url 'verifycertificate' %}" class="menu-btn">
                         VerifyCertificate
+                    </a>
+                </li>
+
+                <style>
+                    .admin{
+                        color: white;
+                        font-weight: bold;
+                        font-size: 20px;
+                        padding: 10px;
+                        background-color: #ff523b;
+                        border-radius: 10px;
+                    }
+                </style>
+
+                <li>
+                    <a href="/admin/" class="admin p-2 bg-red-400 ">
+                        ADMIN
                     </a>
                 </li>
             </ul>
