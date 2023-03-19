@@ -87,20 +87,19 @@ section .title::after{
 }
 .navbar.sticky{
     padding: 15px 0;
-    background: crimson;
+    background: rgb(12, 12, 12);
 }
 .navbar .max-width{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.navbar .logo a{
-    color: #fff;
-    font-size: 35px;
-    font-weight: 600;
+.navbar .logo img{
+    width: 90px; /* adjust width as needed */
+    height: 90px;
 }
 .navbar .logo a span{
-    color: crimson;
+    color: rgb(11, 10, 10);
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
@@ -119,7 +118,7 @@ section .title::after{
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
-    color: crimson;
+    color: rgb(8, 8, 8);
 }
 .navbar.sticky .menu li a:hover{
     color: #fff;
@@ -136,7 +135,7 @@ section .title::after{
     position: fixed;
     height: 45px;
     width: 42px;
-    background: crimson;
+    background: rgb(7, 7, 7);
     right: 30px;
     bottom: 10px;
     text-align: center;
@@ -422,23 +421,20 @@ section .title::after{
 .teams .carousel .card:hover img{
     border-color: #fff;
 }
-.teams .carousel .marquee{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.teams .marquee{
     overflow: hidden;
+    white-space: nowrap;
 }
-.teams .carousel .marquee img{
+.teams .marquee img{
     display: inline-block;
     height: 100px; /* adjust height as needed */
     margin-right: 10px; /* adjust spacing between images as needed */
     animation: marquee 20s linear infinite;
+    -webkit-animation: marquee 5s linear infinite; 
 }
 @keyframes marquee {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 .owl-dots{
     text-align: center;
