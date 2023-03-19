@@ -76,6 +76,45 @@ section .title::after{
     background: #fff;
     transform: translateX(-50%);
 }
+/* social media icons */
+.social-media {
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+}
+
+.social-media-links {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column; /* added this line to align links in a vertical column */
+	align-items: flex-end; /* added this line to align links to the right side of the container */
+}
+
+.social-media-links li {
+	margin-bottom: 10px; /* changed margin-right to margin-bottom to add spacing between links */
+}
+
+.social-media-links a {
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+	line-height: 40px;
+	transition: all 0.3s ease-in-out;
+}
+
+.social-media-links a:hover {
+	transform: rotate(360deg);
+	background-color: #fff;
+	color: #333;
+}
+
 /* navbar styling */
 .navbar{
     position: fixed;
@@ -99,7 +138,7 @@ section .title::after{
     height: 90px;
 }
 .navbar .logo a span{
-    color: rgb(11, 10, 10);
+    color: rgb(247, 245, 245);
     transition: all 0.3s ease;
 }
 .navbar.sticky .logo a span{
@@ -112,13 +151,13 @@ section .title::after{
 .navbar .menu li a{
     display: block;
     color: #fff;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 500;
-    margin-left: 25px;
+    margin-left: 15px;
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
-    color: rgb(8, 8, 8);
+    color: rgb(204, 40, 40);
 }
 .navbar.sticky .menu li a:hover{
     color: #fff;
@@ -126,7 +165,7 @@ section .title::after{
 
 /* menu btn styling */
 .menu-btn{
-    color: #fff;
+    color: rgb(239, 32, 32);
     font-size: 23px;
     cursor: pointer;
     display: none;
