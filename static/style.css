@@ -147,10 +147,11 @@ section .title::after{
 .navbar .menu li{
     list-style: none;
     display: inline-block;
+    margin-right: 5px;
 }
 .navbar .menu li a{
     display: block;
-    color: #fff;
+    color: rgb(16, 10, 59);
     font-size: 25px;
     font-weight: 500;
     margin-left: 15px;
